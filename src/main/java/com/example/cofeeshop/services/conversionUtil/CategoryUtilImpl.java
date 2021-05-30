@@ -26,7 +26,7 @@ public class CategoryUtilImpl implements CategoryUtil {
     public CategoryDTO categoryToCategoryDTO(Category category) {
         var categoryDTO = categoryMapper.categoryToCategoryDTO(category);
         categoryDTO.setFoodListDTO(foodUtil.listAllFoods(category.getFoods()));
-        uriUtil.categoryUriBuilder(categoryDTO);
+        categoryDTO.setUri(uriUtil.categoryUriBuilder(categoryDTO));
         return null;
     }
 

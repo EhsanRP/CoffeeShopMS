@@ -21,6 +21,7 @@ public class ConversionUtilImpl implements ConversionUtil {
     private final CategoryMapper categoryMapper;
     private final FoodMapper foodMapper;
     private final FoodUtil foodUtil;
+    private final CategoryUtil categoryUtil;
 
     @Override
     public MenuDTO menuToMenuDTO(Menu menu) {
@@ -28,16 +29,7 @@ public class ConversionUtilImpl implements ConversionUtil {
 
         var categoryList = menu.getCategories();
 
-        List<CategoryDTO> tempCategoryDTOList = new ArrayList<>();
-
-        categoryList.forEach(category -> {
-            var categoryDTO = categoryMapper.categoryToCategoryDTO(category);
-            categoryDTO.setFoodListDTO(foodUtil.listAllFoods(category.getFoods()));
-
-            tempCategoryDTOList.add(categoryDTO);
-        });
-
-        var categoryDTOList = new CategoryListDTO(tempCategoryDTOList);
+        var categoryDTOList = categoryUtil.listAllCategories(categoryList);
 
         menuDTO.setCategoryListDTO(categoryDTOList);
 
