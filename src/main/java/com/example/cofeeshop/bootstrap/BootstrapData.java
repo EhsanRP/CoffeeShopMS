@@ -21,7 +21,7 @@ public class BootstrapData implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         var menu = menuRepository.save(Menu.builder().build());
-        var pizzaCategory = Category.builder().name("Coffee").build();
+        var pizzaCategory = Category.builder().name("Pizza").build();
         menu.addCategory(pizzaCategory);
         categoryRepository.save(pizzaCategory);
         menuRepository.save(menu);
