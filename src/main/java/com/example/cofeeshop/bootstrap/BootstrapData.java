@@ -1,6 +1,7 @@
 package com.example.cofeeshop.bootstrap;
 
 import com.example.cofeeshop.domain.Category;
+import com.example.cofeeshop.domain.Food;
 import com.example.cofeeshop.domain.Menu;
 import com.example.cofeeshop.repositories.*;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,16 @@ public class BootstrapData implements CommandLineRunner {
         categoryRepository.save(pizzaCategory);
         menuRepository.save(menu);
 
+        loadFoods(10,pizzaCategory);
+    }
+
+    private void loadFoods(int i, Category pizzaCategory) {
+        for (int j = 0; j < i; j++) {
+            var food = Food.builder().name("Pizza " + i).servingTime(10).unitPrice(10000.00).profit(3000.00).build();
+            pizzaCategory.addّFood(food);
+            foodRepository.save(food);
+        }
+        categoryRepository.save(pizzaCategory);
     }
 
 }
