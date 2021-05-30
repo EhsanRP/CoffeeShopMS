@@ -1,13 +1,11 @@
 package com.example.cofeeshop.web.api.v1;
 
 import com.example.cofeeshop.services.MenuService;
+import com.example.cofeeshop.services.dto.MenuDTO;
 import com.example.cofeeshop.services.dto.MenuListDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,5 +20,12 @@ public class MenuRestController {
     public MenuListDTO findAllMenus() {
         return menuService.findAllMenus();
     }
+
+    @GetMapping("{menuId}")
+    @ResponseStatus(HttpStatus.OK)
+    public MenuDTO findMenu(@PathVariable Long menuId) {
+        return menuService.findMenuById(menuId);
+    }
+
 
 }
