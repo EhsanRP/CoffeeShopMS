@@ -39,16 +39,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public MenuListDTO findAllMenus() {
-        var menuList = menuRepository.findAll();
-        var dtoList = menuList.stream()
-                .map(menu -> {
-                    var menuDTO = conversionUtil.menuToMenuDTO(menu);
-
-                    setDTOLink(menuDTO);
-                    return menuDTO;
-                })
-                .collect(Collectors.toList());
-        return new MenuListDTO(dtoList);
+        return conversionUtil.listAllMenus(menuRepository.findAll());
     }
 
     @Override
