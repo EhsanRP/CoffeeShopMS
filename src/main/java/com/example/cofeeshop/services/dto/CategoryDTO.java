@@ -1,6 +1,6 @@
 package com.example.cofeeshop.services.dto;
 
-import com.example.cofeeshop.domain.Menu;
+import com.example.cofeeshop.services.dto.perms.InputValidation;
 import lombok.*;
 
 import java.time.Instant;
@@ -13,10 +13,13 @@ import java.time.Instant;
 public class CategoryDTO {
     private Long id;
 
-    private Instant creationDate;
+    @InputValidation
     private String name;
-    private Long menuId;
-    private FoodListDTO foodListDTO;
 
+    @InputValidation
+    private Long menuId;
+
+    private FoodListDTO foodListDTO;
+    private Instant creationDate;
     private String uri;
 }

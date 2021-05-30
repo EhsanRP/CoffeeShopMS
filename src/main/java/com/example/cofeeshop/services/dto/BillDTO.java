@@ -1,7 +1,9 @@
 package com.example.cofeeshop.services.dto;
 
+import com.example.cofeeshop.services.dto.perms.InputValidation;
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
 import java.time.Instant;
 
 @AllArgsConstructor
@@ -12,11 +14,15 @@ import java.time.Instant;
 public class BillDTO {
 
     private Long id;
-    private Instant creationDate;
-    private Instant completionDate;
+
+    @InputValidation
     private Double totalPrice;
+
+    @NotNull
     private Boolean isApproved;
     private ItemListDTO itemListDTO;
+    private Instant creationDate;
+    private Instant completionDate;
 
     private String url;
 }
