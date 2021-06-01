@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -31,7 +32,7 @@ public class Menu implements Serializable {
     }
 
     @Builder
-    public Menu(Set<Category> categories, String name) {
+    public Menu(List<Category> categories, String name) {
         init();
         this.name = name;
         if (categories != null) {
@@ -62,7 +63,7 @@ public class Menu implements Serializable {
         return this;
     }
 
-    public void addAllCategories(Set<Category> categories) {
+    public void addAllCategories(List<Category> categories) {
         categories.forEach(food -> {
             food.setMenu(this);
             this.categories.add(food);

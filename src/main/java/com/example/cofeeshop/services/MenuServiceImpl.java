@@ -9,13 +9,12 @@ import com.example.cofeeshop.services.conversionUtil.ConversionUtil;
 import com.example.cofeeshop.services.conversionUtil.URIUtil;
 import com.example.cofeeshop.services.dto.MenuDTO;
 import com.example.cofeeshop.services.dto.MenuListDTO;
-import com.example.cofeeshop.web.api.v1.MenuRestController;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.util.UriBuilder;
 
-import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Objects;
 
 @Service
 @Slf4j
@@ -37,10 +36,17 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public void addCategory(Long menuId, Category category) {
+    public MenuDTO addCategory(Long menuId, List<Long> categories) {
         var menu = menuRepository.findById(menuId).orElseThrow(NotFoundException::new);
-        menu.addCategory(category);
+        if (categories.isEmpty()) {
+            return conversionUtil.menuToMenuDTO(menu);
+        }
+
+        var categoryList = categoryRepository.findAllById(categories);
+        menu.addAllCategories(categoryList);
+        categoryRepository.saveAll(categoryList);
         menuRepository.save(menu);
+        return conversionUtil.menuToMenuDTO(menu);
     }
 
     @Override
@@ -52,6 +58,16 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public MenuDTO findMenuById(Long menuId) {
         var menu = menuRepository.findById(menuId).orElseThrow(NotFoundException::new);
+        return conversionUtil.menuToMenuDTO(menu);
+    }
+
+    @Override
+    public MenuDTO updateMenuName(Long menuId, String name) {
+        var menu = menuRepository.findById(menuId).orElseThrow(NotFoundException::new);
+        if (!name.isEmpty() || !name.isBlank()){
+            menu.setName(name);
+            menuRepository.save(menu);
+        }
         return conversionUtil.menuToMenuDTO(menu);
     }
 
