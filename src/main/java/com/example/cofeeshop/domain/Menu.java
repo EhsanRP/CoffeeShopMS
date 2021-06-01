@@ -19,20 +19,40 @@ public class Menu implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
     private Instant creationDate;
     private Instant modificationDate;
 
     @OneToMany(mappedBy = "menu")
     private Set<Category> categories = new HashSet<>();
 
-    @Builder
-    public Menu(Set<Category> categories) {
-        this.creationDate = Instant.now();
+    public Menu(String name) {
+        this.name = name;
+    }
 
-        editModificationDate();
+    @Builder
+    public Menu(Set<Category> categories, String name) {
+        init();
+        this.name = name;
         if (categories != null) {
             addAllCategories(categories);
         }
+
+    }
+
+    public void setName(String name) {
+        this.name = name;
+        editModificationDate();
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+        editModificationDate();
+    }
+
+    public void init() {
+        this.creationDate = Instant.now();
+        this.modificationDate = Instant.now();
     }
 
     public Menu addCategory(Category category) {

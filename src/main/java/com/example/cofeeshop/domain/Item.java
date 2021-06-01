@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.Instant;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,6 +20,7 @@ public class Item implements Serializable {
 
     private Double price;
     private Integer quantity;
+    private Instant creationDate;
 
     @ManyToOne
     private Food food;
@@ -34,6 +36,8 @@ public class Item implements Serializable {
 
         if (food != null || quantity != null)
             calculatePrice();
+
+        creationDate = Instant.now();
     }
 
     private void calculatePrice() {
