@@ -28,8 +28,9 @@ public class MenuServiceImpl implements MenuService {
     private final URIUtil uriUtil;
 
     @Override
-    public MenuDTO createMenu() {
-        var menu = menuRepository.save(Menu.builder().build());
+    public MenuDTO createMenu(Menu menu) {
+        menu.init();
+        var newMenu = menuRepository.save(menu);
         var menuDTO = conversionUtil.menuToMenuDTO(menu);
         setDTOLink(menuDTO);
         return menuDTO;
