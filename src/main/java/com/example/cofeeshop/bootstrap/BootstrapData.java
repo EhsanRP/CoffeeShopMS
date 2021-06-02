@@ -4,19 +4,19 @@ import com.example.cofeeshop.domain.Category;
 import com.example.cofeeshop.domain.Food;
 import com.example.cofeeshop.domain.Menu;
 import com.example.cofeeshop.repositories.*;
-import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
+@Value
 public class BootstrapData implements CommandLineRunner {
 
-    private final FoodRepository foodRepository;
-    private final MenuRepository menuRepository;
-    private final BillRepository billRepository;
-    private final ItemRepository itemRepository;
-    private final CategoryRepository categoryRepository;
+    FoodRepository foodRepository;
+    MenuRepository menuRepository;
+    BillRepository billRepository;
+    ItemRepository itemRepository;
+    CategoryRepository categoryRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -27,7 +27,7 @@ public class BootstrapData implements CommandLineRunner {
         categoryRepository.save(pizzaCategory);
         menuRepository.save(menu);
 
-        loadFoods(10,pizzaCategory);
+        loadFoods(10, pizzaCategory);
     }
 
     private void loadFoods(int i, Category pizzaCategory) {

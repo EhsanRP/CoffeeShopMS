@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface ConversionUtil {
     MenuDTO menuToMenuDTO(Menu menu);
+
     MenuListDTO listAllMenus(List<Menu> menus);
 }

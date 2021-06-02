@@ -6,6 +6,8 @@ import com.example.cofeeshop.services.dto.MenuDTO;
 
 public interface URIUtil {
     String foodUriBuilder(FoodDTO foodDTO);
+
     String categoryUriBuilder(CategoryDTO categoryDTO);
+
     String menuUriBuilder(MenuDTO menuDTO);
 }

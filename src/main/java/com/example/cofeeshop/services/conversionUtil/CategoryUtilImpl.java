@@ -4,7 +4,7 @@ import com.example.cofeeshop.domain.Category;
 import com.example.cofeeshop.services.conversionUtil.mappers.CategoryMapper;
 import com.example.cofeeshop.services.dto.CategoryDTO;
 import com.example.cofeeshop.services.dto.CategoryListDTO;
-import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -13,14 +13,14 @@ import java.util.List;
 import java.util.Set;
 
 @Slf4j
-@RequiredArgsConstructor
+@Value
 @Service
 public class CategoryUtilImpl implements CategoryUtil {
 
-    private final FoodUtil foodUtil;
+    FoodUtil foodUtil;
 
-    private final CategoryMapper categoryMapper;
-    private final URIUtil uriUtil;
+    CategoryMapper categoryMapper;
+    URIUtil uriUtil;
 
     @Override
     public CategoryDTO categoryToCategoryDTO(Category category) {

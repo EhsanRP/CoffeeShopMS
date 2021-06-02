@@ -1,8 +1,6 @@
 package com.example.cofeeshop.services.dto.exceptions;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.Instant;
 

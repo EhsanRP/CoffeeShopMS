@@ -6,23 +6,23 @@ import com.example.cofeeshop.services.conversionUtil.mappers.FoodMapper;
 import com.example.cofeeshop.services.conversionUtil.mappers.MenuMapper;
 import com.example.cofeeshop.services.dto.MenuDTO;
 import com.example.cofeeshop.services.dto.MenuListDTO;
-import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Slf4j
-@RequiredArgsConstructor
+@Value
 @Service
 public class ConversionUtilImpl implements ConversionUtil {
 
-    private final MenuMapper menuMapper;
-    private final CategoryMapper categoryMapper;
-    private final FoodMapper foodMapper;
-    private final FoodUtil foodUtil;
-    private final CategoryUtil categoryUtil;
-    private final MenuUtil menuUtil;
+    MenuMapper menuMapper;
+    CategoryMapper categoryMapper;
+    FoodMapper foodMapper;
+    FoodUtil foodUtil;
+    CategoryUtil categoryUtil;
+    MenuUtil menuUtil;
 
     @Override
     public MenuDTO menuToMenuDTO(Menu menu) {

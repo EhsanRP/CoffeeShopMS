@@ -8,5 +8,6 @@ import java.util.Set;
 
 public interface CategoryUtil {
     CategoryDTO categoryToCategoryDTO(Category category);
+
     CategoryListDTO listAllCategories(Set<Category> categories);
 }

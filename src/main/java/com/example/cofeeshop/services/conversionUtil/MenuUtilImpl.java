@@ -4,7 +4,7 @@ import com.example.cofeeshop.domain.Menu;
 import com.example.cofeeshop.services.conversionUtil.mappers.MenuMapper;
 import com.example.cofeeshop.services.dto.MenuDTO;
 import com.example.cofeeshop.services.dto.MenuListDTO;
-import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-@RequiredArgsConstructor
+@Value
 @Service
 public class MenuUtilImpl implements MenuUtil {
 
-    private final CategoryUtil categoryUtil;
+    CategoryUtil categoryUtil;
 
-    private final MenuMapper menuMapper;
-    private final URIUtilImpl uriUtil;
+    MenuMapper menuMapper;
+    URIUtilImpl uriUtil;
 
     @Override
     public MenuDTO menuToMenuDTO(Menu menu) {

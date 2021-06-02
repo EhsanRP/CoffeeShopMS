@@ -21,6 +21,7 @@ public class ExceptionHandlingAdvice extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleBadRequest() {
         return new ResponseEntity<>(new BadRequest(), HttpStatus.BAD_REQUEST);
     }
+
     @ExceptionHandler(value = NotFoundException.class)
     public ResponseEntity<Object> handleNotFound() {
         return new ResponseEntity<>(new NotFound(), HttpStatus.NOT_FOUND);

@@ -4,7 +4,7 @@ import com.example.cofeeshop.domain.Menu;
 import com.example.cofeeshop.services.MenuService;
 import com.example.cofeeshop.services.dto.MenuDTO;
 import com.example.cofeeshop.services.dto.MenuListDTO;
-import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,13 +13,13 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
+@Value
 @Slf4j
-@RequestMapping({"/api/v1/menus/","/api/v1/menus"})
+@RequestMapping({"/api/v1/menus/", "/api/v1/menus"})
 public class MenuRestController {
 
-    public static final String MENU_BASE_URL = "/api/v1/menus/";
-    private final MenuService menuService;
+    public static String MENU_BASE_URL = "/api/v1/menus/";
+    MenuService menuService;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -43,13 +43,13 @@ public class MenuRestController {
     public MenuDTO updateMenu(
             @PathVariable Long menuId,
             @RequestParam(required = false) String name) {
-        return menuService.updateMenuName(menuId,name);
+        return menuService.updateMenuName(menuId, name);
     }
 
     @PutMapping("update/{menuId}/addCategory")
     public MenuDTO addCategory(
             @PathVariable Long menuId,
             @RequestParam(required = false) List<Long> categories) {
-        return menuService.addCategory(menuId,categories);
+        return menuService.addCategory(menuId, categories);
     }
 }

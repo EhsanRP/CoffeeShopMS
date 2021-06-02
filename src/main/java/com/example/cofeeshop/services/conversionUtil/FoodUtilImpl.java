@@ -4,7 +4,7 @@ import com.example.cofeeshop.domain.Food;
 import com.example.cofeeshop.services.conversionUtil.mappers.FoodMapper;
 import com.example.cofeeshop.services.dto.FoodDTO;
 import com.example.cofeeshop.services.dto.FoodListDTO;
-import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +13,12 @@ import java.util.List;
 import java.util.Set;
 
 @Slf4j
-@RequiredArgsConstructor
+@Value
 @Service
 public class FoodUtilImpl implements FoodUtil {
 
-    private final FoodMapper foodMapper;
-    private final URIUtil uriUtil;
+    FoodMapper foodMapper;
+    URIUtil uriUtil;
 
     @Override
     public FoodDTO foodToFoodDTO(Food food) {
