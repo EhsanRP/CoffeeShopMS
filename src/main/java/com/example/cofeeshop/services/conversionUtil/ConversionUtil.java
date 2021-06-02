@@ -1,11 +1,9 @@
 package com.example.cofeeshop.services.conversionUtil;
 
 import com.example.cofeeshop.domain.Category;
+import com.example.cofeeshop.domain.Food;
 import com.example.cofeeshop.domain.Menu;
-import com.example.cofeeshop.services.dto.CategoryDTO;
-import com.example.cofeeshop.services.dto.CategoryListDTO;
-import com.example.cofeeshop.services.dto.MenuDTO;
-import com.example.cofeeshop.services.dto.MenuListDTO;
+import com.example.cofeeshop.services.dto.*;
 
 import java.util.List;
 import java.util.Set;
@@ -19,4 +17,8 @@ public interface ConversionUtil {
     CategoryDTO categoryToCategoryDTO(Category category);
 
     CategoryListDTO listAllCategories(Set<Category> categories);
+
+    FoodDTO foodToFoodDTO(Food food);
+
+    FoodListDTO listAllFoods(Set<Food> foods);
 }
