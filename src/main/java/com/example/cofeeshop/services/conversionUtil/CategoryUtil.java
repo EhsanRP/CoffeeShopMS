@@ -4,6 +4,7 @@ import com.example.cofeeshop.domain.Category;
 import com.example.cofeeshop.services.dto.CategoryDTO;
 import com.example.cofeeshop.services.dto.CategoryListDTO;
 
+import java.util.List;
 import java.util.Set;
 
 public interface CategoryUtil {
