@@ -34,7 +34,6 @@ public class CategoryRestController {
     @GetMapping("remove/{categoryId}")
     @ResponseStatus(HttpStatus.OK)
     public String removeCategory(@PathVariable Long categoryId){
-
         //TODO FIX METHOD
         categoryService.removeCategory(categoryId);
         return "redirect:/api/v1/categories/";
