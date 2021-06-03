@@ -43,7 +43,7 @@ public class MenuRestController {
     public MenuDTO updateMenu(
             @PathVariable Long menuId,
             @RequestParam(required = false) String name) {
-        return menuService.updateMenuName(menuId, name);
+        return menuService.renameMenu(menuId, name);
     }
 
     @PutMapping("update/{menuId}/addCategory")
