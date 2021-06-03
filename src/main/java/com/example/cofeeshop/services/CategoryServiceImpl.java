@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 
 @Slf4j
 @Value
@@ -67,7 +68,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryDTO addFood(Long categoryId, Food food) {
+    public CategoryDTO addFood(Long categoryId, List<Long> foodId) {
         //TODO Implement Add Food With New Mapping Functions
         return null;
     }

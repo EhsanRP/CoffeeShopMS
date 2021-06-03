@@ -5,6 +5,8 @@ import com.example.cofeeshop.domain.Food;
 import com.example.cofeeshop.services.dto.CategoryDTO;
 import com.example.cofeeshop.services.dto.CategoryListDTO;
 
+import java.util.List;
+
 public interface CategoryService {
 
     CategoryListDTO findAllCategories();
@@ -17,7 +19,7 @@ public interface CategoryService {
 
     CategoryDTO changeMenu(Long categoryId, Long menuId);
 
-    CategoryDTO addFood(Long categoryId, Food food);
+    CategoryDTO addFood(Long categoryId, List<Long> FoodId);
 
     void removeCategory(Long categoryId);
 
