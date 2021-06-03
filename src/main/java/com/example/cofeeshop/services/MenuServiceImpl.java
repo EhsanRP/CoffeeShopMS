@@ -72,6 +72,7 @@ public class MenuServiceImpl implements MenuService {
     private Menu findById(Long menuId){
         return menuRepository.findById(menuId).orElseThrow(NotFoundException::new);
     }
+
     private void setDTOLink(MenuDTO menuDTO) {
         menuDTO.setUrl(uriUtil.menuUriBuilder(menuDTO));
     }
