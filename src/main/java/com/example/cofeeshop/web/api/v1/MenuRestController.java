@@ -40,6 +40,7 @@ public class MenuRestController {
     }
 
     @PutMapping("update/{menuId}/name")
+    @ResponseStatus(HttpStatus.OK)
     public MenuDTO updateMenu(
             @PathVariable Long menuId,
             @RequestParam(required = false) String name) {
@@ -47,6 +48,7 @@ public class MenuRestController {
     }
 
     @PutMapping("update/{menuId}/addCategory")
+    @ResponseStatus(HttpStatus.OK)
     public MenuDTO addCategory(
             @PathVariable Long menuId,
             @RequestParam(required = false) List<Long> categories) {
