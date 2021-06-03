@@ -14,7 +14,7 @@ public interface MenuService {
 
     MenuDTO findMenuById(Long menuId);
 
-    MenuDTO updateMenuName(Long menuId, String name);
+    MenuDTO renameMenu(Long menuId, String name);
 
     MenuDTO addCategory(Long menuId, List<Long> categories);
 

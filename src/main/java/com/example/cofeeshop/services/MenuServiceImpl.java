@@ -35,7 +35,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public MenuDTO addCategory(Long menuId, List<Long> categories) {
-        var menu = menuRepository.findById(menuId).orElseThrow(NotFoundException::new);
+        var menu = findById(menuId);
         if (categories.isEmpty()) {
             return conversionUtil.menuToMenuDTO(menu);
         }
@@ -55,13 +55,13 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public MenuDTO findMenuById(Long menuId) {
-        var menu = menuRepository.findById(menuId).orElseThrow(NotFoundException::new);
+        var menu = findById(menuId);
         return conversionUtil.menuToMenuDTO(menu);
     }
 
     @Override
-    public MenuDTO updateMenuName(Long menuId, String name) {
-        var menu = menuRepository.findById(menuId).orElseThrow(NotFoundException::new);
+    public MenuDTO renameMenu(Long menuId, String name) {
+        var menu = findById(menuId);
         if (!name.isEmpty() || !name.isBlank()) {
             menu.setName(name);
             menuRepository.save(menu);
@@ -69,7 +69,9 @@ public class MenuServiceImpl implements MenuService {
         return conversionUtil.menuToMenuDTO(menu);
     }
 
-
+    private Menu findById(Long menuId){
+        return menuRepository.findById(menuId).orElseThrow(NotFoundException::new);
+    }
     private void setDTOLink(MenuDTO menuDTO) {
         menuDTO.setUrl(uriUtil.menuUriBuilder(menuDTO));
     }
