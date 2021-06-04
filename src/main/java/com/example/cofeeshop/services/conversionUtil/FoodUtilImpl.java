@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Value
@@ -41,5 +42,10 @@ public class FoodUtilImpl implements FoodUtil {
         var food = foodMapper.foodDTOtoFood(foodDTO);
         category.addّFood(food);
         return food;
+    }
+
+    @Override
+    public Set<Food> foodDTOtoFood(Set<FoodDTO> foodDTOS,Category category) {
+        return foodDTOS.stream().map(foodDTO -> foodDTOtoFood(foodDTO,category)).collect(Collectors.toSet());
     }
 }
