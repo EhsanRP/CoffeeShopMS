@@ -1,5 +1,6 @@
 package com.example.cofeeshop.services.conversionUtil;
 
+import com.example.cofeeshop.domain.Category;
 import com.example.cofeeshop.domain.Food;
 import com.example.cofeeshop.services.conversionUtil.mappers.FoodMapper;
 import com.example.cofeeshop.services.dto.FoodDTO;
@@ -33,5 +34,12 @@ public class FoodUtilImpl implements FoodUtil {
         List<FoodDTO> dtoList = new ArrayList<>();
         foods.forEach(food -> dtoList.add(foodToFoodDTO(food)));
         return new FoodListDTO(dtoList);
+    }
+
+    @Override
+    public Food foodDTOtoFood(FoodDTO foodDTO, Category category) {
+        var food = foodMapper.foodDTOtoFood(foodDTO);
+        category.addّFood(food);
+        return food;
     }
 }
