@@ -21,4 +21,10 @@ public interface ConversionUtil {
     FoodDTO foodToFoodDTO(Food food);
 
     FoodListDTO listAllFoods(Set<Food> foods);
+
+    Menu menuDTOtoMenu(MenuDTO menuDTO);
+
+    Food foodDTOtoFood(FoodDTO foodDTO);
+
+    Category categoryDTOtoCategory(CategoryDTO categoryDTO);
 }

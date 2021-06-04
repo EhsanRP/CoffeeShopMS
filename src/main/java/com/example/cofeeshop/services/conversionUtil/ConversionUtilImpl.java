@@ -51,7 +51,22 @@ public class ConversionUtilImpl implements ConversionUtil {
         return foodUtil.foodToFoodDTO(food);
     }
 
-    //TODO Implement DTO To Entity Mappings
+
+
+    @Override
+    public Menu menuDTOtoMenu(MenuDTO menuDTO) {
+        return menuUtil.menuDTOtoMenu(menuDTO);
+    }
+
+    @Override
+    public Food foodDTOtoFood(FoodDTO foodDTO) {
+        return foodUtil.foodDTOtoFood(foodDTO);
+    }
+
+    @Override
+    public Category categoryDTOtoCategory(CategoryDTO categoryDTO) {
+        return categoryUtil.categoryDTOtoCategory(categoryDTO);
+    }
 
     @Override
     public FoodListDTO listAllFoods(Set<Food> foods) {
