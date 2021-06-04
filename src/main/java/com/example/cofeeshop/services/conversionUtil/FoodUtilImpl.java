@@ -2,6 +2,8 @@ package com.example.cofeeshop.services.conversionUtil;
 
 import com.example.cofeeshop.domain.Category;
 import com.example.cofeeshop.domain.Food;
+import com.example.cofeeshop.exceptions.NotFoundException;
+import com.example.cofeeshop.repositories.CategoryRepository;
 import com.example.cofeeshop.services.conversionUtil.mappers.FoodMapper;
 import com.example.cofeeshop.services.dto.FoodDTO;
 import com.example.cofeeshop.services.dto.FoodListDTO;
@@ -18,6 +20,8 @@ import java.util.stream.Collectors;
 @Value
 @Service
 public class FoodUtilImpl implements FoodUtil {
+
+    CategoryRepository categoryRepository;
 
     FoodMapper foodMapper;
     URIUtil uriUtil;
@@ -38,14 +42,17 @@ public class FoodUtilImpl implements FoodUtil {
     }
 
     @Override
-    public Food foodDTOtoFood(FoodDTO foodDTO, Category category) {
+    public Food foodDTOtoFood(FoodDTO foodDTO) {
         var food = foodMapper.foodDTOtoFood(foodDTO);
+
+        var category = categoryRepository.findById(foodDTO.getCategoryId()).orElseThrow(NotFoundException::new);
         category.addّFood(food);
+
         return food;
     }
 
     @Override
-    public Set<Food> foodDTOtoFood(Set<FoodDTO> foodDTOS,Category category) {
-        return foodDTOS.stream().map(foodDTO -> foodDTOtoFood(foodDTO,category)).collect(Collectors.toSet());
+    public Set<Food> foodDTOtoFood(Set<FoodDTO> foodDTOS) {
+        return foodDTOS.stream().map(this::foodDTOtoFood).collect(Collectors.toSet());
     }
 }

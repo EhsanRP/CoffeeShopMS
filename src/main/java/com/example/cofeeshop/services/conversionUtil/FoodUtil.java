@@ -13,8 +13,8 @@ public interface FoodUtil {
 
     FoodListDTO listAllFoods(Set<Food> foods);
 
-    Food foodDTOtoFood(FoodDTO foodDTO, Category category);
+    Food foodDTOtoFood(FoodDTO foodDTO);
 
-    Set<Food> foodDTOtoFood(Set<FoodDTO> foodDTOS,Category category);
+    Set<Food> foodDTOtoFood(Set<FoodDTO> foodDTOS);
 }
 
