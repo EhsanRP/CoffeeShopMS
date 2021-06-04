@@ -1,6 +1,7 @@
 package com.example.cofeeshop.services.conversionUtil;
 
 import com.example.cofeeshop.domain.Menu;
+import com.example.cofeeshop.repositories.CategoryRepository;
 import com.example.cofeeshop.services.conversionUtil.mappers.MenuMapper;
 import com.example.cofeeshop.services.dto.MenuDTO;
 import com.example.cofeeshop.services.dto.MenuListDTO;
@@ -9,7 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Value
@@ -17,6 +21,8 @@ import java.util.List;
 public class MenuUtilImpl implements MenuUtil {
 
     CategoryUtil categoryUtil;
+
+    CategoryRepository categoryRepository;
 
     MenuMapper menuMapper;
     URIUtilImpl uriUtil;
@@ -34,5 +40,24 @@ public class MenuUtilImpl implements MenuUtil {
         List<MenuDTO> dtoList = new ArrayList<>();
         menus.forEach(menu -> dtoList.add(menuToMenuDTO(menu)));
         return new MenuListDTO(dtoList);
+    }
+
+    @Override
+    public Menu menuDTOtoMenu(MenuDTO menuDTO) {
+
+        var menu = menuMapper.menuDTOtoMenu(menuDTO);
+
+        Set<Long> categoryIdList = new HashSet<>();
+        menuDTO.getCategoryListDTO().getCategoryDTOList().stream().forEach(categoryDTO -> categoryIdList.add(categoryDTO.getId()));
+        var categoryList = categoryRepository.findAllById(categoryIdList);
+
+        categoryList.forEach(menu::addCategory);
+
+        return menu;
+    }
+
+    @Override
+    public Set<Menu> menuDTOtoMenu(Set<MenuDTO> menuDTO) {
+        return menuDTO.stream().map(this::menuDTOtoMenu).collect(Collectors.toSet());
     }
 }
