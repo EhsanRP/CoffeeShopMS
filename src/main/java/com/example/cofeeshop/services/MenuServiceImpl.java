@@ -22,6 +22,7 @@ public class MenuServiceImpl implements MenuService {
     MenuRepository menuRepository;
     ConversionUtil conversionUtil;
     CategoryRepository categoryRepository;
+
     URIUtil uriUtil;
 
     @Override
@@ -29,9 +30,7 @@ public class MenuServiceImpl implements MenuService {
         var menu =  conversionUtil.menuDTOtoMenu(menuDTO);
         menu.init();
         menuRepository.save(menu);
-        var menuToReturn = conversionUtil.menuToMenuDTO(menu);
-        setDTOLink(menuDTO);
-        return menuDTO;
+        return conversionUtil.menuToMenuDTO(menu);
     }
 
     @Override
@@ -72,9 +71,5 @@ public class MenuServiceImpl implements MenuService {
 
     private Menu findById(Long menuId){
         return menuRepository.findById(menuId).orElseThrow(NotFoundException::new);
-    }
-
-    private void setDTOLink(MenuDTO menuDTO) {
-        menuDTO.setUrl(uriUtil.menuUriBuilder(menuDTO));
     }
 }

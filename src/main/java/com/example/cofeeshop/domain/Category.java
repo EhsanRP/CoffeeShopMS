@@ -18,8 +18,6 @@ public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Instant creationDate;
     private String name;
 
     @ManyToOne
@@ -27,6 +25,8 @@ public class Category implements Serializable {
 
     @OneToMany(mappedBy = "category")
     private Set<Food> foods = new HashSet<>();
+
+    private Instant creationDate;
 
     @Builder
     public Category(Set<Food> foods, String name, Menu menu) {
@@ -52,5 +52,9 @@ public class Category implements Serializable {
             food.setCategory(this);
             this.foods.add(food);
         });
+    }
+
+    public void init(){
+        this.creationDate = Instant.now();
     }
 }
