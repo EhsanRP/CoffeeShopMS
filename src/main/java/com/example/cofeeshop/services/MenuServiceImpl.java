@@ -25,10 +25,11 @@ public class MenuServiceImpl implements MenuService {
     URIUtil uriUtil;
 
     @Override
-    public MenuDTO createMenu(Menu menu) {
+    public MenuDTO createMenu(MenuDTO menuDTO) {
+        var menu =  conversionUtil.menuDTOtoMenu(menuDTO);
         menu.init();
-        var newMenu = menuRepository.save(menu);
-        var menuDTO = conversionUtil.menuToMenuDTO(menu);
+        menuRepository.save(menu);
+        var menuToReturn = conversionUtil.menuToMenuDTO(menu);
         setDTOLink(menuDTO);
         return menuDTO;
     }

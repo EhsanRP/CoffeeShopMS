@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface MenuService {
 
-    MenuDTO createMenu(Menu menu);
+    MenuDTO createMenu(MenuDTO menuDTO);
 
     MenuListDTO findAllMenus();
 

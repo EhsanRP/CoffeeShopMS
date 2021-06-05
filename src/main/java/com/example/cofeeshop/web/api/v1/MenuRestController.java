@@ -35,13 +35,13 @@ public class MenuRestController {
 
     @PostMapping("new")
     @ResponseStatus(HttpStatus.CREATED)
-    public MenuDTO createMenu(@Valid @RequestBody Menu menu) {
-        return menuService.createMenu(menu);
+    public MenuDTO createMenu(@Valid @RequestBody MenuDTO menuDTO) {
+        return menuService.createMenu(menuDTO);
     }
 
     @PutMapping("update/{menuId}/name")
     @ResponseStatus(HttpStatus.OK)
-    public MenuDTO updateMenu(
+    public MenuDTO renameMenu(
             @PathVariable Long menuId,
             @RequestParam(required = false) String name) {
         return menuService.renameMenu(menuId, name);
