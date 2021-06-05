@@ -36,4 +36,8 @@ public class Food implements Serializable {
         this.category = category;
     }
 
+    public void init(){
+        this.creationDate = Instant.now();
+    }
+
 }
