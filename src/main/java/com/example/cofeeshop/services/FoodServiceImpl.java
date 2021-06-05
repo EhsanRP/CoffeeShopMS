@@ -5,6 +5,7 @@ import com.example.cofeeshop.exceptions.NotFoundException;
 import com.example.cofeeshop.repositories.CategoryRepository;
 import com.example.cofeeshop.repositories.FoodRepository;
 import com.example.cofeeshop.services.conversionUtil.ConversionUtil;
+import com.example.cofeeshop.services.conversionUtil.URIUtil;
 import com.example.cofeeshop.services.dto.FoodDTO;
 import com.example.cofeeshop.services.dto.FoodListDTO;
 import lombok.Value;
@@ -20,7 +21,10 @@ public class FoodServiceImpl implements FoodService {
 
     FoodRepository foodRepository;
     CategoryRepository categoryRepository;
+
     ConversionUtil conversionUtil;
+
+    URIUtil uriUtil;
 
     @Override
     public FoodDTO findFoodById(Long foodId) {
@@ -35,8 +39,14 @@ public class FoodServiceImpl implements FoodService {
 
     @Override
     public FoodDTO createFood(FoodDTO foodDTO) {
-        //TODO IMPLEMENT CREATE FOOD
-        return null;
+        var food = conversionUtil.foodDTOtoFood(foodDTO);
+        food.init();
+        foodRepository.save(food);
+
+        var foodToReturn = conversionUtil.foodToFoodDTO(food);
+        uriUtil.foodUriBuilder(foodToReturn);
+
+        return foodToReturn;
     }
 
     @Override
