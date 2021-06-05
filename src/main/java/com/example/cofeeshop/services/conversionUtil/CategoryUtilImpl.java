@@ -53,11 +53,6 @@ public class CategoryUtilImpl implements CategoryUtil {
         var menu = menuRepository.findById(categoryDTO.getMenuId()).orElseThrow(NotFoundException::new);
         menu.addCategory(category);
 
-        Set<Long> foodIdList = new HashSet<>();
-        categoryDTO.getFoodListDTO().getFoodDTOList().forEach(foodDTO -> foodIdList.add(foodDTO.getId()));
-        var foods = foodRepository.findAllById(foodIdList);
-        foods.forEach(category::addّFood);
-
         return category;
     }
 
