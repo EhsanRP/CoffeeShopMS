@@ -24,8 +24,6 @@ public class FoodServiceImpl implements FoodService {
 
     ConversionUtil conversionUtil;
 
-    URIUtil uriUtil;
-
     @Override
     public FoodDTO findFoodById(Long foodId) {
         return conversionUtil.foodToFoodDTO(findById(foodId));
@@ -43,10 +41,7 @@ public class FoodServiceImpl implements FoodService {
         food.init();
         foodRepository.save(food);
 
-        var foodToReturn = conversionUtil.foodToFoodDTO(food);
-        uriUtil.foodUriBuilder(foodToReturn);
-
-        return foodToReturn;
+        return conversionUtil.foodToFoodDTO(food);
     }
 
     @Override

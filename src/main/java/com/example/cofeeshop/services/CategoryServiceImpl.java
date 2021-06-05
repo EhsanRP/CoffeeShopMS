@@ -4,6 +4,7 @@ import com.example.cofeeshop.domain.Category;
 import com.example.cofeeshop.domain.Food;
 import com.example.cofeeshop.exceptions.NotFoundException;
 import com.example.cofeeshop.repositories.CategoryRepository;
+import com.example.cofeeshop.repositories.FoodRepository;
 import com.example.cofeeshop.repositories.MenuRepository;
 import com.example.cofeeshop.services.conversionUtil.ConversionUtil;
 import com.example.cofeeshop.services.dto.CategoryDTO;
@@ -21,8 +22,10 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
 
     CategoryRepository categoryRepository;
-    ConversionUtil conversionUtil;
     MenuRepository menuRepository;
+    FoodRepository foodRepository;
+
+    ConversionUtil conversionUtil;
 
     @Override
     public CategoryListDTO findAllCategories() {
@@ -37,10 +40,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryDTO createCategory(Category category) {
+    public CategoryDTO createCategory(CategoryDTO categoryDTO) {
+        var category = conversionUtil.categoryDTOtoCategory(categoryDTO);
+        category.init();
+        categoryRepository.save(category);
 
-        //TODO Implement Create Category With New Mapping Functions
-        return null;
+        return conversionUtil.categoryToCategoryDTO(category);
     }
 
     @Override
@@ -69,8 +74,15 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryDTO addFood(Long categoryId, List<Long> foodId) {
-        //TODO Implement Add Food With New Mapping Functions
-        return null;
+        var foods = foodRepository.findAllById(foodId);
+        var category = findById(categoryId);
+
+        foods.forEach(category::addّFood);
+
+        foodRepository.saveAll(foods);
+        categoryRepository.save(category);
+
+        return conversionUtil.categoryToCategoryDTO(category);
     }
 
     @Override

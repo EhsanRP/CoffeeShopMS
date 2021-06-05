@@ -13,7 +13,7 @@ public interface CategoryService {
 
     CategoryDTO findCategoryById(Long categoryId);
 
-    CategoryDTO createCategory(Category category);
+    CategoryDTO createCategory(CategoryDTO categoryDTO);
 
     CategoryDTO renameCategory(Long categoryId, String name);
 

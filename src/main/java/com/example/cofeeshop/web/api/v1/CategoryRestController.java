@@ -41,8 +41,8 @@ public class CategoryRestController {
 
     @PostMapping("new")
     @ResponseStatus(HttpStatus.CREATED)
-    public CategoryDTO createCategory(@Valid @RequestBody Category category){
-        return categoryService.createCategory(category);
+    public CategoryDTO createCategory(@Valid @RequestBody CategoryDTO categoryDTO){
+        return categoryService.createCategory(categoryDTO);
     }
 
     @PutMapping("/update/{categoryId}/name")
