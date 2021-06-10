@@ -3,7 +3,9 @@ package com.example.cofeeshop.bootstrap;
 import com.example.cofeeshop.domain.Category;
 import com.example.cofeeshop.domain.Food;
 import com.example.cofeeshop.domain.Menu;
-import com.example.cofeeshop.repositories.*;
+import com.example.cofeeshop.repositories.CategoryRepository;
+import com.example.cofeeshop.repositories.FoodRepository;
+import com.example.cofeeshop.repositories.MenuRepository;
 import lombok.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -14,14 +16,12 @@ public class BootstrapData implements CommandLineRunner {
 
     FoodRepository foodRepository;
     MenuRepository menuRepository;
-    BillRepository billRepository;
-    ItemRepository itemRepository;
     CategoryRepository categoryRepository;
 
     @Override
     public void run(String... args) throws Exception {
 
-        var menu = menuRepository.save(Menu.builder().name("Main Menu").build());
+        var menu = menuRepository.save(new Menu("Italian"));
         var pizzaCategory = Category.builder().name("Pizza").build();
         menu.addCategory(pizzaCategory);
         categoryRepository.save(pizzaCategory);

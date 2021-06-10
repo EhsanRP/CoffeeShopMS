@@ -27,8 +27,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public MenuDTO createMenu(MenuDTO menuDTO) {
-        var menu =  conversionUtil.menuDTOtoMenu(menuDTO);
-        menu.init();
+        var menu = conversionUtil.menuDTOtoMenu(menuDTO);
         menuRepository.save(menu);
         return conversionUtil.menuToMenuDTO(menu);
     }
@@ -69,7 +68,7 @@ public class MenuServiceImpl implements MenuService {
         return conversionUtil.menuToMenuDTO(menu);
     }
 
-    private Menu findById(Long menuId){
+    private Menu findById(Long menuId) {
         return menuRepository.findById(menuId).orElseThrow(NotFoundException::new);
     }
 }

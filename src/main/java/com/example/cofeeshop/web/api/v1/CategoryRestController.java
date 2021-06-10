@@ -1,10 +1,8 @@
 package com.example.cofeeshop.web.api.v1;
 
-import com.example.cofeeshop.domain.Category;
 import com.example.cofeeshop.services.CategoryService;
 import com.example.cofeeshop.services.dto.CategoryDTO;
 import com.example.cofeeshop.services.dto.CategoryListDTO;
-import com.example.cofeeshop.services.dto.MenuDTO;
 import lombok.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,19 +19,19 @@ public class CategoryRestController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public CategoryListDTO findALlCategories(){
+    public CategoryListDTO findALlCategories() {
         return categoryService.findAllCategories();
     }
 
     @GetMapping("/{categoryId}")
     @ResponseStatus(HttpStatus.OK)
-    public CategoryDTO findCategoryById(@PathVariable Long categoryId){
+    public CategoryDTO findCategoryById(@PathVariable Long categoryId) {
         return categoryService.findCategoryById(categoryId);
     }
 
     @GetMapping("remove/{categoryId}")
     @ResponseStatus(HttpStatus.OK)
-    public String removeCategory(@PathVariable Long categoryId){
+    public String removeCategory(@PathVariable Long categoryId) {
         //TODO FIX METHOD
         categoryService.removeCategory(categoryId);
         return "redirect:/api/v1/categories/";
@@ -41,7 +39,7 @@ public class CategoryRestController {
 
     @PostMapping("new")
     @ResponseStatus(HttpStatus.CREATED)
-    public CategoryDTO createCategory(@Valid @RequestBody CategoryDTO categoryDTO){
+    public CategoryDTO createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
         return categoryService.createCategory(categoryDTO);
     }
 

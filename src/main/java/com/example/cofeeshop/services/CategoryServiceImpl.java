@@ -1,7 +1,6 @@
 package com.example.cofeeshop.services;
 
 import com.example.cofeeshop.domain.Category;
-import com.example.cofeeshop.domain.Food;
 import com.example.cofeeshop.exceptions.NotFoundException;
 import com.example.cofeeshop.repositories.CategoryRepository;
 import com.example.cofeeshop.repositories.FoodRepository;
@@ -90,7 +89,7 @@ public class CategoryServiceImpl implements CategoryService {
         categoryRepository.deleteById(categoryId);
     }
 
-    private Category findById(Long categoryId){
+    private Category findById(Long categoryId) {
         return categoryRepository.findById(categoryId).orElseThrow(NotFoundException::new);
     }
 }

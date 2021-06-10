@@ -1,6 +1,5 @@
 package com.example.cofeeshop.services.conversionUtil;
 
-import com.example.cofeeshop.domain.Category;
 import com.example.cofeeshop.domain.Food;
 import com.example.cofeeshop.exceptions.NotFoundException;
 import com.example.cofeeshop.repositories.CategoryRepository;

@@ -5,7 +5,6 @@ import com.example.cofeeshop.exceptions.NotFoundException;
 import com.example.cofeeshop.repositories.CategoryRepository;
 import com.example.cofeeshop.repositories.FoodRepository;
 import com.example.cofeeshop.services.conversionUtil.ConversionUtil;
-import com.example.cofeeshop.services.conversionUtil.URIUtil;
 import com.example.cofeeshop.services.dto.FoodDTO;
 import com.example.cofeeshop.services.dto.FoodListDTO;
 import lombok.Value;

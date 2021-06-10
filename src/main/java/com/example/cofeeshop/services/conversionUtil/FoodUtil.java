@@ -1,6 +1,5 @@
 package com.example.cofeeshop.services.conversionUtil;
 
-import com.example.cofeeshop.domain.Category;
 import com.example.cofeeshop.domain.Food;
 import com.example.cofeeshop.services.dto.FoodDTO;
 import com.example.cofeeshop.services.dto.FoodListDTO;

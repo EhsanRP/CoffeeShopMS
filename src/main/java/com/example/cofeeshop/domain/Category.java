@@ -4,12 +4,12 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Getter
 @Setter
 @Entity
@@ -26,25 +26,9 @@ public class Category implements Serializable {
     @OneToMany(mappedBy = "category")
     private Set<Food> foods = new HashSet<>();
 
-    private Instant creationDate;
-
-    @Builder
-    public Category(Set<Food> foods, String name, Menu menu) {
-
-        this.name = name;
-        this.menu = menu;
-
-        this.creationDate = Instant.now();
-        if (foods != null) {
-            addAllFoods(foods);
-        }
-
-    }
-
-    public Category addّFood(Food food) {
+    public void addFood(Food food) {
         food.setCategory(this);
         this.foods.add(food);
-        return this;
     }
 
     public void addAllFoods(Set<Food> foods) {
@@ -54,7 +38,4 @@ public class Category implements Serializable {
         });
     }
 
-    public void init(){
-        this.creationDate = Instant.now();
-    }
 }

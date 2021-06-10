@@ -1,6 +1,5 @@
 package com.example.cofeeshop.services;
 
-import com.example.cofeeshop.domain.Menu;
 import com.example.cofeeshop.services.dto.MenuDTO;
 import com.example.cofeeshop.services.dto.MenuListDTO;
 

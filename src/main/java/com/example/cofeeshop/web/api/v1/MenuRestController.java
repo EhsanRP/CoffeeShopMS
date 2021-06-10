@@ -1,6 +1,5 @@
 package com.example.cofeeshop.web.api.v1;
 
-import com.example.cofeeshop.domain.Menu;
 import com.example.cofeeshop.services.MenuService;
 import com.example.cofeeshop.services.dto.MenuDTO;
 import com.example.cofeeshop.services.dto.MenuListDTO;
