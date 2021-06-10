@@ -3,6 +3,7 @@ package com.example.cofeeshop.services.conversionUtil;
 import com.example.cofeeshop.domain.Category;
 import com.example.cofeeshop.domain.Food;
 import com.example.cofeeshop.domain.Menu;
+import com.example.cofeeshop.domain.Sale;
 import com.example.cofeeshop.services.conversionUtil.mappers.CategoryMapper;
 import com.example.cofeeshop.services.conversionUtil.mappers.FoodMapper;
 import com.example.cofeeshop.services.conversionUtil.mappers.MenuMapper;
@@ -25,6 +26,7 @@ public class ConversionUtilImpl implements ConversionUtil {
     FoodUtil foodUtil;
     CategoryUtil categoryUtil;
     MenuUtil menuUtil;
+    SaleUtil saleUtil;
 
     @Override
     public MenuDTO menuToMenuDTO(Menu menu) {
@@ -69,5 +71,20 @@ public class ConversionUtilImpl implements ConversionUtil {
     @Override
     public FoodListDTO listAllFoods(Set<Food> foods) {
         return foodUtil.listAllFoods(foods);
+    }
+
+    @Override
+    public SaleDTO saleToSaleDTO(Sale sale) {
+        return saleUtil.saleToSaleDTO(sale);
+    }
+
+    @Override
+    public SaleListDTO listAllSales(List<Sale> sales) {
+        return saleUtil.listAllSales(sales);
+    }
+
+    @Override
+    public Sale saleDTOtoSale(SaleDTO saleDTO) {
+        return saleUtil.saleDTOtoSale(saleDTO);
     }
 }
