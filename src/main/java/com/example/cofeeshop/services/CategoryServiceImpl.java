@@ -41,7 +41,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryDTO createCategory(CategoryDTO categoryDTO) {
         var category = conversionUtil.categoryDTOtoCategory(categoryDTO);
-        category.init();
         categoryRepository.save(category);
 
         return conversionUtil.categoryToCategoryDTO(category);
@@ -76,7 +75,7 @@ public class CategoryServiceImpl implements CategoryService {
         var foods = foodRepository.findAllById(foodId);
         var category = findById(categoryId);
 
-        foods.forEach(category::addّFood);
+        foods.forEach(category::addFood);
 
         foodRepository.saveAll(foods);
         categoryRepository.save(category);

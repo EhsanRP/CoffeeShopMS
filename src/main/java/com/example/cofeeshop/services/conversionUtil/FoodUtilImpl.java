@@ -45,7 +45,7 @@ public class FoodUtilImpl implements FoodUtil {
         var food = foodMapper.foodDTOtoFood(foodDTO);
 
         var category = categoryRepository.findById(foodDTO.getCategoryId()).orElseThrow(NotFoundException::new);
-        category.addّFood(food);
+        category.addFood(food);
 
         return food;
     }

@@ -20,6 +20,5 @@ public class CategoryDTO {
     private Long menuId;
 
     private FoodListDTO foodListDTO;
-    private Instant creationDate;
     private String uri;
 }

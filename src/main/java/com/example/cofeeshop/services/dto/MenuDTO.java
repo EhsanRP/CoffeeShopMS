@@ -18,8 +18,5 @@ public class MenuDTO {
     private String name;
 
     private CategoryListDTO categoryListDTO;
-
-    private Instant creationDate;
-    private Instant modificationDate;
     private String url;
 }

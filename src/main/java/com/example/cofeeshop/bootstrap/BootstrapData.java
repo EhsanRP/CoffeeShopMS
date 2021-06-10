@@ -21,7 +21,7 @@ public class BootstrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        var menu = menuRepository.save(new Menu("Italian"));
+        var menu = menuRepository.save(Menu.builder().name("Italian").build());
         var pizzaCategory = Category.builder().name("Pizza").build();
         menu.addCategory(pizzaCategory);
         categoryRepository.save(pizzaCategory);
@@ -33,7 +33,7 @@ public class BootstrapData implements CommandLineRunner {
     private void loadFoods(int i, Category pizzaCategory) {
         for (int j = 0; j < i; j++) {
             var food = Food.builder().name("Pizza " + i).servingTime(10).unitPrice(10000.00).profit(3000.00).build();
-            pizzaCategory.addّFood(food);
+            pizzaCategory.addFood(food);
             foodRepository.save(food);
         }
         categoryRepository.save(pizzaCategory);

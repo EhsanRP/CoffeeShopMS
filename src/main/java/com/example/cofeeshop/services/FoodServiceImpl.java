@@ -37,7 +37,6 @@ public class FoodServiceImpl implements FoodService {
     @Override
     public FoodDTO createFood(FoodDTO foodDTO) {
         var food = conversionUtil.foodDTOtoFood(foodDTO);
-        food.init();
         foodRepository.save(food);
 
         return conversionUtil.foodToFoodDTO(food);
@@ -78,7 +77,7 @@ public class FoodServiceImpl implements FoodService {
         var food = findById(foodId);
         var category = categoryRepository.findById(categoryId).orElseThrow(NotFoundException::new);
 
-        category.addّFood(food);
+        category.addFood(food);
         categoryRepository.save(category);
         foodRepository.save(food);
 

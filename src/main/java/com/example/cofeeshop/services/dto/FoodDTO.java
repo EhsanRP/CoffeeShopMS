@@ -29,6 +29,5 @@ public class FoodDTO {
     @InputValidation
     private Long categoryId;
 
-    private Instant creationDate;
     private String url;
 }
