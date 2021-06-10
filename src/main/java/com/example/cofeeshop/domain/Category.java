@@ -23,6 +23,7 @@ public class Category implements Serializable {
     @ManyToOne
     private Menu menu;
 
+    @Builder.Default
     @OneToMany(mappedBy = "category")
     private Set<Food> foods = new HashSet<>();
 

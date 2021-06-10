@@ -22,6 +22,7 @@ public class Menu implements Serializable {
 
     private String name;
 
+    @Builder.Default
     @OneToMany(mappedBy = "menu")
     private Set<Category> categories = new HashSet<>();
 
