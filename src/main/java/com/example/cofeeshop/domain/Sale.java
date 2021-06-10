@@ -19,6 +19,6 @@ public class Sale {
     @ManyToOne
     private Food food;
     private Integer quantity;
-
-
+    private Double unitPrice;
+    private Double profit;
 }
