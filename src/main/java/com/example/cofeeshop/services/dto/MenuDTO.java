@@ -17,6 +17,6 @@ public class MenuDTO {
     @InputValidation
     private String name;
 
-    private CategoryListDTO categoryListDTO;
+    private CategoryListDTO categoryListDTO = new CategoryListDTO();
     private String url;
 }

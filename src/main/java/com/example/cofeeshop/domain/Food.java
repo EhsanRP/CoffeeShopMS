@@ -24,5 +24,4 @@ public class Food implements Serializable {
 
     @ManyToOne
     private Category category;
-
 }

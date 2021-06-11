@@ -19,6 +19,6 @@ public class CategoryDTO {
     @InputValidation
     private Long menuId;
 
-    private FoodListDTO foodListDTO;
+    private FoodListDTO foodListDTO = new FoodListDTO();
     private String uri;
 }
