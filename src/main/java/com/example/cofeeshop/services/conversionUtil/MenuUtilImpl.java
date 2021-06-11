@@ -48,7 +48,7 @@ public class MenuUtilImpl implements MenuUtil {
         var menu = menuMapper.menuDTOtoMenu(menuDTO);
 
         Set<Long> categoryIdList = new HashSet<>();
-        menuDTO.getCategoryListDTO().getCategoryDTOList().stream().forEach(categoryDTO -> categoryIdList.add(categoryDTO.getId()));
+        menuDTO.getCategoryListDTO().getCategoryDTOList().forEach(categoryDTO -> categoryIdList.add(categoryDTO.getId()));
         var categoryList = categoryRepository.findAllById(categoryIdList);
 
         categoryList.forEach(menu::addCategory);
