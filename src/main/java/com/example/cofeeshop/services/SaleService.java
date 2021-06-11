@@ -12,4 +12,6 @@ public interface SaleService {
     SaleDTO editSale(Long saleId,SaleDTO saleDTO);
 
     SaleDTO createSale(SaleDTO saleDTO);
+
+    void removeSale(Long saleId);
 }
