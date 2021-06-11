@@ -1,5 +1,7 @@
 package com.example.cofeeshop.services;
 
+import com.example.cofeeshop.domain.Sale;
+import com.example.cofeeshop.exceptions.NotFoundException;
 import com.example.cofeeshop.repositories.FoodRepository;
 import com.example.cofeeshop.repositories.SaleRepository;
 import com.example.cofeeshop.services.conversionUtil.ConversionUtil;
@@ -37,5 +39,9 @@ public class SaleServiceImpl implements SaleService {
     @Override
     public SaleDTO createSale(Long foodId, Integer quantity) {
         return null;
+    }
+
+    private Sale findById(Long saleId){
+        return saleRepository.findById(saleId).orElseThrow(NotFoundException::new);
     }
 }
