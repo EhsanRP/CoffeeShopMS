@@ -38,7 +38,9 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public SaleDTO createSale(SaleDTO saleDTO) {
-        return null;
+        var saleToSave = conversionUtil.saleDTOtoSale(saleDTO);
+        var sale= saleRepository.save(saleToSave);
+        return conversionUtil.saleToSaleDTO(sale);
     }
 
     private Sale findById(Long saleId){
