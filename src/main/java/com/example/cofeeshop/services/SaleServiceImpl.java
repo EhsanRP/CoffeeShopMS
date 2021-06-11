@@ -33,17 +33,39 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public SaleDTO editSale(Long saleId, SaleDTO saleDTO) {
-        return null;
+        var sale = findById(saleId);
+
+        if (saleDTO.getFoodId() != null) {
+            var food = foodRepository.findById(saleDTO.getFoodId()).orElseThrow(NotFoundException::new);
+            sale.setFood(food);
+        }
+
+        if (saleDTO.getUnitPrice() != null)
+            sale.setUnitPrice(saleDTO.getUnitPrice());
+
+        if (saleDTO.getQuantity() != null)
+            sale.setQuantity(saleDTO.getQuantity());
+
+        if (saleDTO.getProfit() != null)
+            sale.setProfit(saleDTO.getProfit());
+
+        var newSale = saleRepository.save(sale);
+        return conversionUtil.saleToSaleDTO(newSale);
     }
 
     @Override
     public SaleDTO createSale(SaleDTO saleDTO) {
         var saleToSave = conversionUtil.saleDTOtoSale(saleDTO);
-        var sale= saleRepository.save(saleToSave);
+        var sale = saleRepository.save(saleToSave);
         return conversionUtil.saleToSaleDTO(sale);
     }
 
-    private Sale findById(Long saleId){
+    private Sale findById(Long saleId) {
         return saleRepository.findById(saleId).orElseThrow(NotFoundException::new);
+    }
+
+    @Override
+    public void removeSale(Long saleId) {
+        saleRepository.deleteById(saleId);
     }
 }
