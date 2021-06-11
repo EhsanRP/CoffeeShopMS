@@ -37,7 +37,7 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public SaleDTO createSale(Long foodId, Integer quantity) {
+    public SaleDTO createSale(SaleDTO saleDTO) {
         return null;
     }
 

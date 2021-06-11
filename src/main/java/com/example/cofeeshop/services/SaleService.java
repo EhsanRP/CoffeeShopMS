@@ -11,5 +11,5 @@ public interface SaleService {
 
     SaleDTO editSale(Long saleId,SaleDTO saleDTO);
 
-    SaleDTO createSale(Long foodId, Integer quantity);
+    SaleDTO createSale(SaleDTO saleDTO);
 }
