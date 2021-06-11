@@ -28,7 +28,7 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public SaleDTO findSaleById(Long id) {
-        return null;
+        return conversionUtil.saleToSaleDTO(findById(id));
     }
 
     @Override
