@@ -32,6 +32,9 @@ public class SaleUtilImpl implements SaleUtil {
         var saleDTO = saleMapper.saleToSaleDTO(sale);
 
         saleDTO.setFoodId(sale.getFood().getId());
+        saleDTO.setProfit(sale.getFood().getProfit());
+        saleDTO.setUnitPrice(sale.getFood().getUnitPrice());
+
         saleDTO.setUrl(uriUtil.saleUriBuilder(saleDTO));
 
         return saleDTO;
@@ -50,6 +53,8 @@ public class SaleUtilImpl implements SaleUtil {
         var food = foodRepository.findById(saleDTO.getFoodId()).orElseThrow(NotFoundException::new);
 
         sale.setFood(food);
+        sale.setUnitPrice(food.getUnitPrice());
+        sale.setProfit(food.getProfit());
 
         return sale;
     }
