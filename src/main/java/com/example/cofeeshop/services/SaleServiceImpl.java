@@ -21,7 +21,7 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public SaleListDTO findAllSales() {
-        return null;
+        return conversionUtil.listAllSales(saleRepository.findAll());
     }
 
     @Override
