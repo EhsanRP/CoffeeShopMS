@@ -60,12 +60,14 @@ public class SaleServiceImpl implements SaleService {
         return conversionUtil.saleToSaleDTO(sale);
     }
 
+    @Override
+    public void removeSale(Long saleId) {
+        var sale = findById(saleId);
+        saleRepository.delete(sale);
+    }
     private Sale findById(Long saleId) {
         return saleRepository.findById(saleId).orElseThrow(NotFoundException::new);
     }
 
-    @Override
-    public void removeSale(Long saleId) {
-        saleRepository.deleteById(saleId);
-    }
+
 }
