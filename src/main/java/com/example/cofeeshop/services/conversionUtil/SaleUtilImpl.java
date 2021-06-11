@@ -50,8 +50,10 @@ public class SaleUtilImpl implements SaleUtil {
         var food = foodRepository.findById(saleDTO.getFoodId()).orElseThrow(NotFoundException::new);
 
         sale.setFood(food);
-        sale.setProfit(food.getProfit());
-        sale.setUnitPrice(food.getProfit());
+        if (saleDTO.getProfit() == null)
+            sale.setProfit(food.getProfit());
+        if (saleDTO.getUnitPrice() == null)
+            sale.setUnitPrice(food.getProfit());
 
         return sale;
     }
