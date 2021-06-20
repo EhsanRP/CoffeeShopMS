@@ -31,10 +31,8 @@ public class CategoryRestController {
 
     @GetMapping("remove/{categoryId}")
     @ResponseStatus(HttpStatus.OK)
-    public String removeCategory(@PathVariable Long categoryId) {
-        //TODO FIX METHOD
+    public void removeCategory(@PathVariable Long categoryId) {
         categoryService.removeCategory(categoryId);
-        return "redirect:/api/v1/categories/";
     }
 
     @PostMapping("new")
@@ -51,11 +49,19 @@ public class CategoryRestController {
         return categoryService.renameCategory(categoryId, name);
     }
 
-    @PutMapping("update/{categoryId}/addCategory")
+    @PutMapping("update/{categoryId}/addFood")
     @ResponseStatus(HttpStatus.OK)
     public CategoryDTO addFood(
             @PathVariable Long categoryId,
-            @RequestParam(required = false) List<Long> foods) {
+            @RequestParam(required = true) List<Long> foods) {
         return categoryService.addFood(categoryId, foods);
+    }
+
+    @PutMapping("update/{categoryId}/changeMenu")
+    @ResponseStatus(HttpStatus.OK)
+    public CategoryDTO changeMenu(
+            @PathVariable Long categoryId,
+            @RequestParam(required = true) Long menuId) {
+        return categoryService.changeMenu(categoryId, menuId);
     }
 }

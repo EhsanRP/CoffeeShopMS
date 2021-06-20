@@ -24,7 +24,7 @@ public class Category implements Serializable {
     private Menu menu;
 
     @Builder.Default
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private Set<Food> foods = new HashSet<>();
 
     public void addFood(Food food) {

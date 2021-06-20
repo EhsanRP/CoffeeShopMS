@@ -23,7 +23,7 @@ public class Menu implements Serializable {
     private String name;
 
     @Builder.Default
-    @OneToMany(mappedBy = "menu")
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
     private Set<Category> categories = new HashSet<>();
 
     public void setName(String name) {
