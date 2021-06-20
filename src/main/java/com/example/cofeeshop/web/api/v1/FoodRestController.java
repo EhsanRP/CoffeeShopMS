@@ -1,6 +1,5 @@
 package com.example.cofeeshop.web.api.v1;
 
-import com.example.cofeeshop.repositories.FoodRepository;
 import com.example.cofeeshop.services.FoodService;
 import com.example.cofeeshop.services.dto.FoodDTO;
 import com.example.cofeeshop.services.dto.FoodListDTO;
@@ -20,20 +19,31 @@ public class FoodRestController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public FoodListDTO findAllFoods(){
+    public FoodListDTO findAllFoods() {
         return foodService.findAllFoods();
     }
 
     @GetMapping("{foodId}")
     @ResponseStatus(HttpStatus.OK)
-    public FoodDTO findById(@PathVariable Long foodId){
+    public FoodDTO findById(@PathVariable Long foodId) {
         return foodService.findFoodById(foodId);
     }
 
-    @GetMapping("new")
+    @PostMapping("new")
     @ResponseStatus(HttpStatus.CREATED)
-    public FoodDTO createFood(@Valid @RequestBody FoodDTO foodDTO){
+    public FoodDTO createFood(@Valid @RequestBody FoodDTO foodDTO) {
         return foodService.createFood(foodDTO);
     }
 
+    @PutMapping("edit/{foodId}")
+    @ResponseStatus(HttpStatus.OK)
+    public FoodDTO editFood(@PathVariable Long foodId, @RequestBody FoodDTO foodDTO) {
+        return foodService.editFood(foodId,foodDTO);
+    }
+
+    @PutMapping("remove/{foodId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void removeFood(@PathVariable Long foodId) {
+        foodService.removeFood(foodId);
+    }
 }
