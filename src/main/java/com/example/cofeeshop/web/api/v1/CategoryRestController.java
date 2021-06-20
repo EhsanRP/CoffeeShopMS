@@ -19,7 +19,7 @@ public class CategoryRestController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public CategoryListDTO findALlCategories() {
+    public CategoryListDTO findAllCategories() {
         return categoryService.findAllCategories();
     }
 
