@@ -43,45 +43,35 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
-    public FoodDTO editFoodName(Long foodId, String name) {
+    public FoodDTO editFood(Long foodId, FoodDTO foodDTO) {
+
         var food = findById(foodId);
-        if (!name.isEmpty() || !name.isBlank()) {
-            food.setName(name);
-            foodRepository.save(food);
+
+        if (foodDTO.getName() != null && !foodDTO.getName().isEmpty() && !foodDTO.getName().isBlank()) {
+            food.setName(foodDTO.getName());
         }
-        return conversionUtil.foodToFoodDTO(food);
-    }
 
-    @Override
-    public FoodDTO editFoodPrice(Long foodId, Double price) {
-        var food = findById(foodId);
-        if (price != null) {
-            food.setUnitPrice(price);
-            foodRepository.save(food);
+        if (foodDTO.getUnitPrice() != null && foodDTO.getUnitPrice() != 0) {
+            food.setUnitPrice(foodDTO.getUnitPrice());
         }
-        return conversionUtil.foodToFoodDTO(food);
-    }
 
-    @Override
-    public FoodDTO editFoodProfit(Long foodId, Double profit) {
-        var food = findById(foodId);
-        if (profit != null) {
-            food.setProfit(profit);
-            foodRepository.save(food);
+        if (foodDTO.getProfit() != null && foodDTO.getProfit() != 0) {
+            food.setProfit(foodDTO.getProfit());
         }
-        return conversionUtil.foodToFoodDTO(food);
-    }
 
-    @Override
-    public FoodDTO setFoodCategory(Long foodId, Long categoryId) {
-        var food = findById(foodId);
-        var category = categoryRepository.findById(categoryId).orElseThrow(NotFoundException::new);
+        if (foodDTO.getServingTime() != null && foodDTO.getServingTime() != 0) {
+            food.setServingTime(foodDTO.getServingTime());
+        }
 
-        category.addFood(food);
-        categoryRepository.save(category);
-        foodRepository.save(food);
+        if (foodDTO.getCategoryId() != null) {
+            var category = categoryRepository.findById(foodDTO.getCategoryId()).orElseThrow(NotFoundException::new);
+            category.addFood(food);
+            categoryRepository.save(category);
+        }
 
-        return null;
+        var foodToReturn = foodRepository.save(food);
+
+        return conversionUtil.foodToFoodDTO(foodToReturn);
     }
 
     @Override

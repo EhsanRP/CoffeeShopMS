@@ -11,13 +11,7 @@ public interface FoodService {
 
     FoodDTO createFood(FoodDTO foodDTO);
 
-    FoodDTO editFoodName(Long foodId, String name);
-
-    FoodDTO editFoodPrice(Long foodId, Double price);
-
-    FoodDTO editFoodProfit(Long foodId, Double profit);
-
-    FoodDTO setFoodCategory(Long foodId, Long categoryId);
+    FoodDTO editFood(Long foodId, FoodDTO foodDTO);
 
     void removeFood(Long foodId);
 }
