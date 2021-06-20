@@ -39,7 +39,6 @@ public class SaleServiceImpl implements SaleService {
             var food = foodRepository.findById(saleDTO.getFoodId()).orElseThrow(NotFoundException::new);
             sale.setFood(food);
         }
-
         if (saleDTO.getUnitPrice() != null)
             sale.setUnitPrice(saleDTO.getUnitPrice());
 
@@ -49,8 +48,8 @@ public class SaleServiceImpl implements SaleService {
         if (saleDTO.getProfit() != null)
             sale.setProfit(saleDTO.getProfit());
 
-        var newSale = saleRepository.save(sale);
-        return conversionUtil.saleToSaleDTO(newSale);
+        var saleToReturn = saleRepository.save(sale);
+        return conversionUtil.saleToSaleDTO(saleToReturn);
     }
 
     @Override
