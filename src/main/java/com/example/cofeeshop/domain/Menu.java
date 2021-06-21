@@ -26,14 +26,6 @@ public class Menu implements Serializable {
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
     private Set<Category> categories = new HashSet<>();
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
-    }
-
     public void addCategory(Category category) {
         category.setMenu(this);
         this.categories.add(category);
