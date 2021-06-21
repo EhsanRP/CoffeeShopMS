@@ -4,6 +4,7 @@ import com.example.cofeeshop.domain.Menu;
 import com.example.cofeeshop.exceptions.NotFoundException;
 import com.example.cofeeshop.repositories.CategoryRepository;
 import com.example.cofeeshop.repositories.MenuRepository;
+import com.example.cofeeshop.services.command.MenuCommand;
 import com.example.cofeeshop.services.conversionUtil.ConversionUtil;
 import com.example.cofeeshop.services.conversionUtil.URIUtil;
 import com.example.cofeeshop.services.dto.MenuDTO;
@@ -49,7 +50,7 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public MenuListDTO findAllMenusDTO() {
         var menus = menuRepository.findAll();
-        return conversionUtil.listAllMenus(menus);
+        return conversionUtil.listAllMenusDTO(menus);
     }
 
     @Override
@@ -66,6 +67,12 @@ public class MenuServiceImpl implements MenuService {
             menuRepository.save(menu);
         }
         return conversionUtil.menuToMenuDTO(menu);
+    }
+
+    @Override
+    public List<MenuCommand> findAllCommands() {
+        var menus = menuRepository.findAll();
+        return conversionUtil.listAllMenusCommand(menus);
     }
 
     private Menu findById(Long menuId) {
