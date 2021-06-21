@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface MenuService {
 
-    MenuDTO createMenu(MenuDTO menuDTO);
+    MenuDTO createMenuFromDTO(MenuDTO menuDTO);
 
-    MenuListDTO findAllMenus();
+    MenuListDTO findAllMenusDTO();
 
-    MenuDTO findMenuById(Long menuId);
+    MenuDTO findMenuDTOById(Long menuId);
 
-    MenuDTO renameMenu(Long menuId, String name);
+    MenuDTO renameMenuDTO(Long menuId, String name);
 
-    MenuDTO addCategory(Long menuId, List<Long> categories);
+    MenuDTO addCategoryDTO(Long menuId, List<Long> categories);
 
 
 }
