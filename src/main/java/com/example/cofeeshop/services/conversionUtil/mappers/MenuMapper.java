@@ -1,6 +1,7 @@
 package com.example.cofeeshop.services.conversionUtil.mappers;
 
 import com.example.cofeeshop.domain.Menu;
+import com.example.cofeeshop.services.command.MenuCommand;
 import com.example.cofeeshop.services.dto.MenuDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -14,4 +15,7 @@ public interface MenuMapper {
 
     Menu menuDTOtoMenu(MenuDTO menuDTO);
 
+    Menu menuCommandToMenu(MenuCommand menuCommand);
+
+    MenuCommand menuToMenuCommand(Menu menu);
 }
