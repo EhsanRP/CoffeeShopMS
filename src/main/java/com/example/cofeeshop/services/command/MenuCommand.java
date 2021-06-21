@@ -12,7 +12,7 @@ import java.util.Set;
 @Builder
 @Getter
 @Setter
-public class menuCommand {
+public class MenuCommand {
     private Long id;
 
     @InputValidation
