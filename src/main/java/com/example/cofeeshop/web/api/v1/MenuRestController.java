@@ -17,25 +17,25 @@ import java.util.List;
 @RequestMapping({"/api/v1/menus/", "/api/v1/menus"})
 public class MenuRestController {
 
-    public static String MENU_BASE_URL = "/api/v1/menus/";
+    public static String MENU_REST_BASE_URL = "/api/v1/menus/";
     MenuService menuService;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public MenuListDTO findAllMenus() {
-        return menuService.findAllMenus();
+        return menuService.findAllMenusDTO();
     }
 
     @GetMapping("{menuId}")
     @ResponseStatus(HttpStatus.OK)
     public MenuDTO findMenu(@PathVariable Long menuId) {
-        return menuService.findMenuById(menuId);
+        return menuService.findMenuDTOById(menuId);
     }
 
     @PostMapping("new")
     @ResponseStatus(HttpStatus.CREATED)
     public MenuDTO createMenu(@Valid @RequestBody MenuDTO menuDTO) {
-        return menuService.createMenu(menuDTO);
+        return menuService.createMenuFromDTO(menuDTO);
     }
 
     @PutMapping("update/{menuId}/name")
@@ -43,7 +43,7 @@ public class MenuRestController {
     public MenuDTO renameMenu(
             @PathVariable Long menuId,
             @RequestParam(required = false) String name) {
-        return menuService.renameMenu(menuId, name);
+        return menuService.renameMenuDTO(menuId, name);
     }
 
     @PutMapping("update/{menuId}/addCategory")
@@ -51,6 +51,6 @@ public class MenuRestController {
     public MenuDTO addCategory(
             @PathVariable Long menuId,
             @RequestParam(required = false) List<Long> categories) {
-        return menuService.addCategory(menuId, categories);
+        return menuService.addCategoryDTO(menuId, categories);
     }
 }
