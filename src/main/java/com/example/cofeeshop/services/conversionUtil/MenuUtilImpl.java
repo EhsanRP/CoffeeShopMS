@@ -2,6 +2,7 @@ package com.example.cofeeshop.services.conversionUtil;
 
 import com.example.cofeeshop.domain.Menu;
 import com.example.cofeeshop.repositories.CategoryRepository;
+import com.example.cofeeshop.services.command.MenuCommand;
 import com.example.cofeeshop.services.conversionUtil.mappers.MenuMapper;
 import com.example.cofeeshop.services.dto.MenuDTO;
 import com.example.cofeeshop.services.dto.MenuListDTO;
@@ -27,6 +28,8 @@ public class MenuUtilImpl implements MenuUtil {
     MenuMapper menuMapper;
     URIUtilImpl uriUtil;
 
+    //METHODS FOR RESTFUL SERVICES
+
     @Override
     public MenuDTO menuToMenuDTO(Menu menu) {
         var menuDTO = menuMapper.menuToMenuDTO(menu);
@@ -36,7 +39,7 @@ public class MenuUtilImpl implements MenuUtil {
     }
 
     @Override
-    public MenuListDTO listAllMenus(List<Menu> menus) {
+    public MenuListDTO listAllMenusDTO(List<Menu> menus) {
         List<MenuDTO> dtoList = new ArrayList<>();
         menus.forEach(menu -> dtoList.add(menuToMenuDTO(menu)));
         return new MenuListDTO(dtoList);
@@ -59,5 +62,24 @@ public class MenuUtilImpl implements MenuUtil {
     @Override
     public Set<Menu> menuDTOtoMenu(Set<MenuDTO> menuDTO) {
         return menuDTO.stream().map(this::menuDTOtoMenu).collect(Collectors.toSet());
+    }
+
+    //METHODS FOR MVC SIDE
+
+    @Override
+    public Menu menuCommandToMenu(MenuCommand menuCommand) {
+        return menuMapper.menuCommandToMenu(menuCommand);
+    }
+
+    @Override
+    public MenuCommand menuToMenuCommand(Menu menu) {
+        return menuMapper.menuToMenuCommand(menu);
+    }
+
+    @Override
+    public List<MenuCommand> listAllMenusCommand(List<Menu> menus) {
+        List<MenuCommand> commandList = new ArrayList<>();
+        menus.forEach(menu -> commandList.add(menuMapper.menuToMenuCommand(menu)));
+        return commandList;
     }
 }

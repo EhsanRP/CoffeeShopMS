@@ -4,6 +4,7 @@ import com.example.cofeeshop.domain.Category;
 import com.example.cofeeshop.domain.Food;
 import com.example.cofeeshop.domain.Menu;
 import com.example.cofeeshop.domain.Sale;
+import com.example.cofeeshop.services.command.MenuCommand;
 import com.example.cofeeshop.services.conversionUtil.mappers.CategoryMapper;
 import com.example.cofeeshop.services.conversionUtil.mappers.FoodMapper;
 import com.example.cofeeshop.services.conversionUtil.mappers.MenuMapper;
@@ -34,8 +35,28 @@ public class ConversionUtilImpl implements ConversionUtil {
     }
 
     @Override
-    public MenuListDTO listAllMenus(List<Menu> menus) {
-        return menuUtil.listAllMenus(menus);
+    public Menu menuDTOtoMenu(MenuDTO menuDTO) {
+        return menuUtil.menuDTOtoMenu(menuDTO);
+    }
+
+    @Override
+    public MenuListDTO listAllMenusDTO(List<Menu> menus) {
+        return menuUtil.listAllMenusDTO(menus);
+    }
+
+    @Override
+    public Menu menuCommandToMenu(MenuCommand menuCommand) {
+        return menuUtil.menuCommandToMenu(menuCommand);
+    }
+
+    @Override
+    public MenuCommand menuToMenuCommand(Menu menu) {
+        return menuUtil.menuToMenuCommand(menu);
+    }
+
+    @Override
+    public List<MenuCommand> listAllMenusCommand(List<Menu> menus) {
+        return menuUtil.listAllMenusCommand(menus);
     }
 
     @Override
@@ -51,11 +72,6 @@ public class ConversionUtilImpl implements ConversionUtil {
     @Override
     public FoodDTO foodToFoodDTO(Food food) {
         return foodUtil.foodToFoodDTO(food);
-    }
-
-    @Override
-    public Menu menuDTOtoMenu(MenuDTO menuDTO) {
-        return menuUtil.menuDTOtoMenu(menuDTO);
     }
 
     @Override

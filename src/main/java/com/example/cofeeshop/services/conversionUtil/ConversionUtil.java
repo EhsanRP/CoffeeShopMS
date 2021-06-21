@@ -4,6 +4,7 @@ import com.example.cofeeshop.domain.Category;
 import com.example.cofeeshop.domain.Food;
 import com.example.cofeeshop.domain.Menu;
 import com.example.cofeeshop.domain.Sale;
+import com.example.cofeeshop.services.command.MenuCommand;
 import com.example.cofeeshop.services.dto.*;
 
 import java.util.List;
@@ -13,7 +14,15 @@ public interface ConversionUtil {
 
     MenuDTO menuToMenuDTO(Menu menu);
 
-    MenuListDTO listAllMenus(List<Menu> menus);
+    Menu menuDTOtoMenu(MenuDTO menuDTO);
+
+    Menu menuCommandToMenu(MenuCommand menuCommand);
+
+    MenuCommand menuToMenuCommand(Menu menu);
+
+    MenuListDTO listAllMenusDTO(List<Menu> menus);
+
+    List<MenuCommand> listAllMenusCommand(List<Menu> menus);
 
     CategoryDTO categoryToCategoryDTO(Category category);
 
@@ -22,8 +31,6 @@ public interface ConversionUtil {
     FoodDTO foodToFoodDTO(Food food);
 
     FoodListDTO listAllFoods(Set<Food> foods);
-
-    Menu menuDTOtoMenu(MenuDTO menuDTO);
 
     Food foodDTOtoFood(FoodDTO foodDTO);
 
