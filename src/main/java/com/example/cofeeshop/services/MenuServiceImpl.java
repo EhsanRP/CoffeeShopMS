@@ -26,14 +26,14 @@ public class MenuServiceImpl implements MenuService {
     URIUtil uriUtil;
 
     @Override
-    public MenuDTO createMenu(MenuDTO menuDTO) {
+    public MenuDTO createMenuFromDTO(MenuDTO menuDTO) {
         var menu = conversionUtil.menuDTOtoMenu(menuDTO);
         menuRepository.save(menu);
         return conversionUtil.menuToMenuDTO(menu);
     }
 
     @Override
-    public MenuDTO addCategory(Long menuId, List<Long> categories) {
+    public MenuDTO addCategoryDTO(Long menuId, List<Long> categories) {
         var menu = findById(menuId);
         if (categories.isEmpty()) {
             return conversionUtil.menuToMenuDTO(menu);
@@ -47,19 +47,19 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public MenuListDTO findAllMenus() {
+    public MenuListDTO findAllMenusDTO() {
         var menus = menuRepository.findAll();
         return conversionUtil.listAllMenus(menus);
     }
 
     @Override
-    public MenuDTO findMenuById(Long menuId) {
+    public MenuDTO findMenuDTOById(Long menuId) {
         var menu = findById(menuId);
         return conversionUtil.menuToMenuDTO(menu);
     }
 
     @Override
-    public MenuDTO renameMenu(Long menuId, String name) {
+    public MenuDTO renameMenuDTO(Long menuId, String name) {
         var menu = findById(menuId);
         if (!name.isEmpty() || !name.isBlank()) {
             menu.setName(name);

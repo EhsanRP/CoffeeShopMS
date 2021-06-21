@@ -22,12 +22,12 @@ public class URIUtilImpl implements URIUtil {
 
     @Override
     public String categoryUriBuilder(CategoryDTO categoryDTO) {
-        return CategoryRestController.Category_BASE_URL + categoryDTO.getId();
+        return CategoryRestController.CATEGORY_REST_BASE_URL + categoryDTO.getId();
     }
 
     @Override
     public String menuUriBuilder(MenuDTO menuDTO) {
-        return MenuRestController.MENU_BASE_URL + menuDTO.getId();
+        return MenuRestController.MENU_REST_BASE_URL + menuDTO.getId();
     }
 
     @Override
